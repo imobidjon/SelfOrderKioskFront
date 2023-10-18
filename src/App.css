@@ -1,0 +1,28 @@
+.bgColor {
+  background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0) 15.15%,
+      rgba(240, 240, 240, 0.5) 86.67%
+    ),
+    #6f1bc4;
+  height: 100vh;
+}
+
+.title h1 {
+  font-family: "Poppins", sans-serif;
+  font-style: italic;
+  font-weight: 700;
+  font-size: 80px;
+  line-height: 144px;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.title p {
+  font-family: "Poppins", sans-serif;
+  font-style: italic;
+  font-weight: 700;
+  font-size: 30px;
+  color: #fff;
+  text-transform: uppercase;
+}

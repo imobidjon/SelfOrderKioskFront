@@ -1,0 +1,42 @@
+.bgStyle {
+  mix-blend-mode: normal;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+
+.title button {
+  background-color: #fff;
+  border: none;
+  border-radius: 20px;
+  width: 300px;
+  height: 60px;
+  font-size: large;
+  font-family: "Poppins", sans-serif;
+  font-style: italic;
+  font-size: 40px;
+  font-weight: 600;
+}
+
+.bgImage1 img {
+  position: absolute;
+  top: -10%;
+  left: -10%;
+  width: 600px;
+}
+
+.bgImage2 img {
+  position: absolute;
+  bottom: -100px;
+  right: -100px;
+  width: 600px;
+}

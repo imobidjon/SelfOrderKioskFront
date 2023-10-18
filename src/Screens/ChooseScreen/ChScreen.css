@@ -1,0 +1,9 @@
+.textStyle {
+    font-family: "Poppins", sans-serif !important;
+    font-style: italic !important;
+    font-weight: 800 !important;
+    font-size: 40px !important;
+    margin-top: 20px !important;
+    text-transform: uppercase !important;
+    text-align: center !important;
+}
