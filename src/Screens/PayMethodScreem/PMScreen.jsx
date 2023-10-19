@@ -15,7 +15,7 @@ export default function PMScreen(props) {
 
   const handlerChoose = (payMethod) => {
     setPayMethod(dispatch, payMethod);
-    navigate("/order-home/Hammasi");
+    navigate("/order-home");
   };
 
   AOS.init();

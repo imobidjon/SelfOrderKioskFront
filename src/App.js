@@ -13,7 +13,7 @@ function App() {
           <Route Component={Screen} path='/' exact={'true'} />      
           <Route Component={ChScreen} path='/choose' exact={'true'} />      
           <Route Component={PMScreen} path='/paymethod' exact={'true'} />      
-          <Route Component={OHScreen} path='/order-home/:name' exact={'true'} />      
+          <Route Component={OHScreen} path='/order-home' exact={'true'} />      
         </Routes>
       </BrowserRouter>
     </div>

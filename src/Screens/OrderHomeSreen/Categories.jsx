@@ -1,17 +1,25 @@
 import { Alert, Box, CircularProgress, Grid, Typography } from "@mui/material";
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 // import bgImage1 from "../../assets/images/hpageimg1.png";
 import { Store } from "../../Store";
-import { setCategoryList } from "../../actions";
-import { NavLink, useLocation } from "react-router-dom";
+import { setCategoryList, setProductList } from "../../actions";
 
 export default function Categories() {
-  const location = useLocation();
   const { state, dispatch } = useContext(Store);
+  const [categoryName, setcategoryName] = useState("");
   const { categories, loading, error } = state.CategoryList;
   useEffect(() => {
-    setCategoryList(dispatch);
-  }, [dispatch]);
+    if (!categories) {
+      setCategoryList(dispatch);
+    } else {
+      setProductList(dispatch, categoryName);
+    }
+  }, [dispatch, categories, categoryName]);
+
+  const categoryClickHandler = (name) => {
+    setcategoryName(name);
+    setProductList(dispatch, categoryName);
+  };
 
   return (
     <div>
@@ -24,38 +32,37 @@ export default function Categories() {
           <>
             {categories.map((category) => (
               <Grid item xs={1} key={category.name}>
-                 <NavLink to={`/order-home/${category.name}`} className={'text-dark text-decoration-none'} >
-                    <Box
-                    sx={{
-                        width: "92px;",
-                        height: "92px;",
-                        textAlign: "center",
-                    }}
-                    >
-                    <Box
-                        sx={
-                        category.name === location.pathname.slice(12)
-                            ? {
-                                background: "#7E3EBE",
-                                display: "flex",
-                                alignItems: "center",
-                                borderRadius: "15px",
-                                height: "100%",
-                            }
-                            : {
-                                background: "#E2DBEA",
-                                display: "flex",
-                                alignItems: "center",
-                                borderRadius: "15px",
-                                height: "100%",
-                            }
-                        }
-                    >
-                        <img width={100} src={category.image} alt={category.name} />
-                    </Box>
-                    <Typography>{category.name}</Typography>
-                    </Box>
-                 </NavLink>
+                <Box
+                  onClick={() => categoryClickHandler(category.name)}
+                  sx={{
+                    width: "92px;",
+                    height: "92px;",
+                    textAlign: "center",
+                  }}
+                >
+                  <Box
+                    sx={
+                      category.name === categoryName
+                        ? {
+                            background: "#7E3EBE",
+                            display: "flex",
+                            alignItems: "center",
+                            borderRadius: "15px",
+                            height: "100%",
+                          }
+                        : {
+                            background: "#E2DBEA",
+                            display: "flex",
+                            alignItems: "center",
+                            borderRadius: "15px",
+                            height: "100%",
+                          }
+                    }
+                  >
+                    <img width={100} src={category.image} alt={category.name} />
+                  </Box>
+                  <Typography>{category.name}</Typography>
+                </Box>
               </Grid>
             ))}
           </>
