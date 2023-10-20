@@ -1,6 +1,6 @@
 import React, { createContext, useReducer } from "react";
 import {
-    CATEGORY_LIST_FAIL,
+  CATEGORY_LIST_FAIL,
   CATEGORY_LIST_REQUEST,
   CATEGORY_LIST_SUCCESS,
   ORDER_SET_TYPE,
@@ -8,21 +8,28 @@ import {
   PRODUCT_LIST_FAIL,
   PRODUCT_LIST_REQUEST,
   PRODUCT_LIST_SUCCESS,
+  SELECTED_PRODUCT,
 } from "./constants";
 
 export const Store = createContext();
 
 const initialState = {
-  ProductList: {loading: true},
+  ProductList: { loading: true },
   CategoryList: { loading: true },
   order: {
     orderType: "Eat In",
     payMethod: "Cash",
+    SelectedProduct: {},
   },
 };
 
 function reducer(state, action) {
   switch (action.type) {
+    case SELECTED_PRODUCT:
+      return {
+        ...state,
+        order: { ...state.order, SelectedProduct: action.payload },
+      };
     case PRODUCT_LIST_REQUEST:
       return {
         ...state,

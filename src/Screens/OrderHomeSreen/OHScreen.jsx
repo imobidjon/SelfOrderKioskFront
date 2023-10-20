@@ -1,10 +1,13 @@
 import { Autocomplete, Box, Grid, TextField } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import "./OHScreen.css";
 import Categories from "./Categories";
 import Products from "./Products";
+import DialogSection from "./DialogSection";
 
 export default function OHScreen() {
+  const [ open, setOpen ] = useState(false)
+
   return (
     <Box sx={{mx: '100px'}}>
       <Grid
@@ -42,7 +45,8 @@ export default function OHScreen() {
       </Grid>
 
       <Categories />
-      <Products />
+      <Products setOpen={setOpen} />
+      <DialogSection open={open} setOpen={setOpen} />
     </Box>
   );
 }

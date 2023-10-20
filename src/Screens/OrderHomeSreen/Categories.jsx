@@ -1,6 +1,5 @@
 import { Alert, Box, CircularProgress, Grid, Typography } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
-// import bgImage1 from "../../assets/images/hpageimg1.png";
 import { Store } from "../../Store";
 import { setCategoryList, setProductList } from "../../actions";
 
