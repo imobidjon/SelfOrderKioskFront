@@ -1,18 +1,21 @@
 import {
   Box,
   Button,
+  ButtonGroup,
   Dialog,
   DialogContent,
   Grid,
   IconButton,
+  Stack,
   Typography,
 } from "@mui/material";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Store } from "../../Store";
 import {
   AddCircle,
   AddCircleOutline,
   RemoveCircleOutline,
+  ShoppingBasket,
 } from "@mui/icons-material";
 
 // Images
@@ -23,6 +26,7 @@ import Pishloq from "../../assets/images/Pishloq.png";
 export default function DialogSection({ setOpen, open }) {
   const { state } = useContext(Store);
   const { SelectedProduct } = state.order;
+  const [quantity, setQuantity] = useState(1);
 
   console.log(SelectedProduct.name);
 
@@ -53,7 +57,7 @@ export default function DialogSection({ setOpen, open }) {
           >
             <Grid
               item
-              xs={6}
+              xs={5}
               sx={{
                 background: "#7E3EBE",
               }}
@@ -63,7 +67,7 @@ export default function DialogSection({ setOpen, open }) {
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
-                  height: '100%'
+                  height: "100%",
                 }}
               >
                 <img
@@ -75,7 +79,7 @@ export default function DialogSection({ setOpen, open }) {
             </Grid>
             <Grid
               item
-              xs={6}
+              xs={7}
               sx={{
                 background: "#E2DBEA",
                 borderRadius: "20px 0 0 20px",
@@ -108,7 +112,7 @@ export default function DialogSection({ setOpen, open }) {
                   }}
                 >
                   <Box>
-                    <Typography sx={{ fontFamily: "Poppins",}}>
+                    <Typography sx={{ fontFamily: "Poppins" }}>
                       <b>{SelectedProduct.price}</b> so'm
                     </Typography>
                   </Box>
@@ -118,12 +122,20 @@ export default function DialogSection({ setOpen, open }) {
                       alignItems: "center",
                     }}
                   >
-                    <IconButton>
-                      <AddCircleOutline sx={{ color: "#7E3EBE", fontSize: '35px' }} />
+                    <IconButton
+                      disabled={quantity === 1}
+                      onClick={() => quantity > 1 && setQuantity(quantity - 1)}
+                    >
+                      <RemoveCircleOutline
+                        sx={{ color: "#7E3EBE", fontSize: "35px" }}
+                      />
                     </IconButton>
-                    <Typography> 1</Typography>
-                    <IconButton>
-                      <RemoveCircleOutline sx={{ color: "#7E3EBE", fontSize: '35px' }} />
+                    <Typography>{quantity}</Typography>
+
+                    <IconButton onClick={() => setQuantity(quantity + 1)}>
+                      <AddCircleOutline
+                        sx={{ color: "#7E3EBE", fontSize: "35px" }}
+                      />
                     </IconButton>
                   </Box>
                 </Box>
@@ -225,15 +237,34 @@ export default function DialogSection({ setOpen, open }) {
                   </Box>
                 </Box>
 
-                {/* Button */}
+                {/* Buttons */}
 
-                <Box sx={{ textAlign: "center" }}>
+                <Box sx={{ display: "flex", alignItems: 'center' }}>
                   <Button
                     variant="contained"
-                    fullWidth={true}
+                    sx={{
+                      background: 'none',
+                      border: '2px #7E3EBE solid',
+                      borderRadius: "13px",
+                      color: '#000',
+                      mr: 1,
+                      "&:hover": {
+                        backgroundColor: "#9852dd",
+                        borderColor: "#9852dd",
+                        boxShadow: "none",
+                        color: '#fff',
+                      },
+                    }}
+                  >
+                    Ortga
+                  </Button>
+                  <Button
+                    endIcon={<ShoppingBasket />}
+                    variant="contained"
                     sx={{
                       background: "#7E3EBE",
                       borderRadius: "13px",
+                      width: '100%',
                       "&:hover": {
                         backgroundColor: "#9852dd",
                         borderColor: "#0062cc",
