@@ -3,11 +3,13 @@ import {
   CATEGORY_LIST_FAIL,
   CATEGORY_LIST_REQUEST,
   CATEGORY_LIST_SUCCESS,
+  ORDER_ADD_ITEM,
   ORDER_SET_TYPE,
   PAY_SET_METHOD,
   PRODUCT_LIST_FAIL,
   PRODUCT_LIST_REQUEST,
   PRODUCT_LIST_SUCCESS,
+  REMOVE_FROM_ORDER,
   SELECTED_PRODUCT,
 } from "./constants";
 
@@ -45,7 +47,8 @@ export const setProductList = async (dispatch, categoryName = "") => {
   dispatch({ type: PRODUCT_LIST_REQUEST });
   try {
     const { data } = await axios.get(
-      `http://127.0.0.1:5000/api/products?category=${categoryName}`
+      `http://127.0.0.1:5000/api/products?category=${categoryName}`,
+      {mode:'cors',  credentials: 'include'}
     );
     return dispatch({
       type: PRODUCT_LIST_SUCCESS,
@@ -63,5 +66,19 @@ export const setSelectedProduct = async (dispatch, selectedProduct) => {
   return dispatch({
     type: SELECTED_PRODUCT,
     payload: selectedProduct,
+  });
+};
+
+export const addToOrder = async (dispatch, item) => {
+  return dispatch({
+    type: ORDER_ADD_ITEM,
+    payload: item,
+  });
+};
+
+export const removeFromOrder = async (dispatch, item) => {
+  return dispatch({
+    type: REMOVE_FROM_ORDER,
+    payload: item,
   });
 };

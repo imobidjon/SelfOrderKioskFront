@@ -1,12 +1,10 @@
 import {
   Box,
   Button,
-  ButtonGroup,
   Dialog,
   DialogContent,
   Grid,
   IconButton,
-  Stack,
   Typography,
 } from "@mui/material";
 import React, { useContext, useState } from "react";
@@ -22,13 +20,32 @@ import {
 import Suzma from "../../assets/images/Suzma.png";
 import Chili from "../../assets/images/Chili.png";
 import Pishloq from "../../assets/images/Pishloq.png";
+import { addToOrder, removeFromOrder } from "../../actions";
+import Swal from "sweetalert2";
 
 export default function DialogSection({ setOpen, open }) {
-  const { state } = useContext(Store);
+  const { state, dispatch } = useContext(Store);
   const { SelectedProduct } = state.order;
   const [quantity, setQuantity] = useState(1);
 
-  console.log(SelectedProduct.name);
+  const AddToOrderHandler = () => {
+    addToOrder(dispatch, {...SelectedProduct, quantity})
+    setOpen(false)
+    setQuantity(1)
+    Swal.fire({
+      icon: 'success',
+      title: `Yaxshi tanlov`,
+      text: `Taomingiz savatchaga qo'shildi`,
+      timer: 2000,
+      timerProgressBar: true,
+      confirmButtonText: 'Yaxshi!'
+    })
+  }
+
+  const cancelOrRemoveFromOrder = () => {
+    removeFromOrder(dispatch, SelectedProduct)
+    setOpen(false)
+  }
 
   return (
     <div>
@@ -241,6 +258,7 @@ export default function DialogSection({ setOpen, open }) {
 
                 <Box sx={{ display: "flex", alignItems: 'center' }}>
                   <Button
+                    onClick={cancelOrRemoveFromOrder}
                     variant="contained"
                     sx={{
                       background: 'none',
@@ -259,6 +277,7 @@ export default function DialogSection({ setOpen, open }) {
                     Ortga
                   </Button>
                   <Button
+                    onClick={AddToOrderHandler}
                     endIcon={<ShoppingBasket />}
                     variant="contained"
                     sx={{

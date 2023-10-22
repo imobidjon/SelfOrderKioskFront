@@ -3,11 +3,13 @@ import {
   CATEGORY_LIST_FAIL,
   CATEGORY_LIST_REQUEST,
   CATEGORY_LIST_SUCCESS,
+  ORDER_ADD_ITEM,
   ORDER_SET_TYPE,
   PAY_SET_METHOD,
   PRODUCT_LIST_FAIL,
   PRODUCT_LIST_REQUEST,
   PRODUCT_LIST_SUCCESS,
+  REMOVE_FROM_ORDER,
   SELECTED_PRODUCT,
 } from "./constants";
 
@@ -20,6 +22,7 @@ const initialState = {
     orderType: "Eat In",
     payMethod: "Cash",
     SelectedProduct: {},
+    orderItems: [],
   },
 };
 
@@ -70,6 +73,54 @@ function reducer(state, action) {
         ...state,
         order: { ...state.order, payMethod: action.payload },
       };
+    case ORDER_ADD_ITEM: {
+      const item = action.payload;
+      const existItem = state.order.orderItems.find(
+        (x) => x.name === item.name
+      );
+      const orderItems = existItem
+        ? state.order.orderItems.map((x) =>
+            x.name === existItem.name ? item : x
+          )
+        : [...state.order.orderItems, item];
+
+      const itemsCount = orderItems.reduce((a, c) => a + c.quantity, 0);
+      const itemsPrice = orderItems.reduce(
+        (a, c) => a + c.quantity * c.price,
+        0
+      );
+
+      return {
+        ...state,
+        order: {
+          ...state.order,
+          orderItems,
+          itemsCount,
+          itemsPrice,
+        },
+      };
+    }
+    case REMOVE_FROM_ORDER: {
+      const orderItems = state.order.orderItems.filter(
+        (x) => x.name !== action.payload.name
+      );
+
+      const itemsCount = orderItems.reduce((a, c) => a + c.quantity, 0);
+      const itemsPrice = orderItems.reduce(
+        (a, c) => a + c.quantity * c.price,
+        0
+      );
+
+      return {
+        ...state,
+        order: {
+          ...state.order,
+          orderItems,
+          itemsCount,
+          itemsPrice,
+        },
+      };
+    }
     default:
       return state;
   }
