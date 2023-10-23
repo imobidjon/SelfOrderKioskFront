@@ -85,7 +85,7 @@ function reducer(state, action) {
         : [...state.order.orderItems, item];
 
       const itemsCount = orderItems.reduce((a, c) => a + c.quantity, 0);
-      const itemsPrice = orderItems.reduce(
+      const totalPrice = orderItems.reduce(
         (a, c) => a + c.quantity * c.price,
         0
       );
@@ -96,7 +96,7 @@ function reducer(state, action) {
           ...state.order,
           orderItems,
           itemsCount,
-          itemsPrice,
+          totalPrice,
         },
       };
     }
@@ -106,7 +106,7 @@ function reducer(state, action) {
       );
 
       const itemsCount = orderItems.reduce((a, c) => a + c.quantity, 0);
-      const itemsPrice = orderItems.reduce(
+      const totalPrice = orderItems.reduce(
         (a, c) => a + c.quantity * c.price,
         0
       );
@@ -117,7 +117,7 @@ function reducer(state, action) {
           ...state.order,
           orderItems,
           itemsCount,
-          itemsPrice,
+          totalPrice,
         },
       };
     }

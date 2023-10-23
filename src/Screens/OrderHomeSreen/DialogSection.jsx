@@ -33,6 +33,7 @@ export default function DialogSection({ setOpen, open }) {
   const { SelectedProduct } = state.order;
   const [quantity, setQuantity] = useState(1);
 
+
   const AddToOrderHandler = () => {
     addToOrder(dispatch, {...SelectedProduct, quantity})
     setOpen(false)
@@ -51,9 +52,7 @@ export default function DialogSection({ setOpen, open }) {
     removeFromOrder(dispatch, SelectedProduct)
     setOpen(false)
   }
-
   return (
-    <div>
       <Dialog
         maxWidth={"sm"}
         fullWidth={true}
@@ -305,6 +304,5 @@ export default function DialogSection({ setOpen, open }) {
           </Grid>
         </DialogContent>
       </Dialog>
-    </div>
   );
 }

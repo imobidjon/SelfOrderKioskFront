@@ -37,7 +37,7 @@ export default function Products({ setOpen }) {
           }}
         >
           <div className="text-center">
-            <div class="lds-ripple">
+            <div className="lds-ripple">
               <div></div>
               <div></div>
             </div>
@@ -63,7 +63,7 @@ export default function Products({ setOpen }) {
                     />
                   </div>
                   <div className="card-footer text-center">
-                    <h2 className="ProductName text-center">{product.name}</h2>
+                    <h2 className="ProductName">{product.name}</h2>
                     <p className="ProductPrice">
                       <span className="text-dark">Narxi:</span> {product.price}{" "}
                       so'm

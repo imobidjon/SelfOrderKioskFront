@@ -5,6 +5,10 @@
   color: #000000;
 }
 
+.swal2-container {
+  z-index: 10000000;
+}
+
 .title p {
   font-family: "Poppins", sans-serif;
   font-style: italic;
