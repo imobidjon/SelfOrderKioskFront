@@ -30,7 +30,9 @@ export const setPayMethod = (dispatch, payMethod) => {
 export const setCategoryList = async (dispatch) => {
   dispatch({ type: CATEGORY_LIST_REQUEST });
   try {
-    const { data } = await axios.get("http://127.0.0.1:5000/api/categories");
+    const { data } = await axios.get(
+      "http://192.168.0.109:5000/api/categories"
+    );
     return dispatch({
       type: CATEGORY_LIST_SUCCESS,
       payload: data,
@@ -46,10 +48,7 @@ export const setCategoryList = async (dispatch) => {
 export const setProductList = async (dispatch, categoryName = "") => {
   dispatch({ type: PRODUCT_LIST_REQUEST });
   try {
-    const { data } = await axios.get(
-      `http://127.0.0.1:5000/api/products?category=${categoryName}`,
-      {mode:'cors',  credentials: 'include'}
-    );
+    const { data } = await axios.get(`http://192.168.0.109:5000/api/products?category=${categoryName}`);
     return dispatch({
       type: PRODUCT_LIST_SUCCESS,
       payload: data,

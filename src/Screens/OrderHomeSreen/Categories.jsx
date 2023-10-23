@@ -1,7 +1,8 @@
 import {
-  // Alert,
+  Alert,
   Box,
-  // CircularProgress,
+  Divider,
+  CircularProgress,
   Drawer,
   // Grid,
   Typography,
@@ -12,12 +13,8 @@ import { setCategoryList, setProductList } from "../../actions";
 
 export default function Categories() {
   const { state, dispatch } = useContext(Store);
+  const { categories, loading, error } = state.CategoryList;
   const [categoryName, setcategoryName] = useState("");
-  const {
-    categories,
-    // loading,
-    // error
-  } = state.CategoryList;
 
   useEffect(() => {
     if (!categories) {
@@ -27,14 +24,24 @@ export default function Categories() {
     }
   }, [dispatch, categories, categoryName]);
 
-  // const categoryClickHandler = (name) => {
-  //   setcategoryName(name);
-  //   setProductList(dispatch, categoryName);
-  // };
+  const categoryClickHandler = (name) => {
+    setcategoryName(name);
+    setProductList(dispatch, categoryName);
+  };
 
   const drawer = (
     <div className="text-center">
-      {/* {loading ? (
+      <Box
+        onClick={() => categoryClickHandler("")}
+        sx={{
+          width: "120px;",
+          height: "120px;",
+        }}
+      >
+        <img width={"100%"} src={"/images/logo.png"} alt={"sss"} />
+      </Box>
+      <Divider sx={{ borderWidth: "2px", borderColor: "#772C1E" }} />
+      {loading ? (
         <CircularProgress />
       ) : error ? (
         <Alert severity="error">{error}</Alert>
@@ -54,7 +61,7 @@ export default function Categories() {
                 sx={
                   category.name === categoryName
                     ? {
-                        background: "#7E3EBE",
+                        background: "#772C1E",
                         display: "flex",
                         alignItems: "center",
                         borderRadius: "15px",
@@ -75,41 +82,11 @@ export default function Categories() {
                   alt={category.name}
                 />
               </Box>
-              <Typography fontWeight={'bolder'}>Burgerlar</Typography>
+              <Typography fontWeight={"bolder"}>Burgerlar</Typography>
             </Box>
           ))}
         </>
-      )} */}
-
-      <Box
-        // key={category.name}
-        // onClick={() => categoryClickHandler(category.name)}
-        sx={{
-          width: "70px;",
-          height: "70px;",
-          m: 3,
-        }}
-      >
-        <Box>
-          <img width={"100%"} src={"/images/11.png"} alt={"sss"} />
-        </Box>
-        <Typography fontWeight={"bolder"}>Burgerlar</Typography>
-      </Box>
-      <Box
-        // key={category.name}
-        // onClick={() => categoryClickHandler(category.name)}
-        sx={{
-          width: "70px;",
-          height: "70px;",
-          m: 3,
-          mt: 5,
-        }}
-      >
-        <Box>
-          <img width={"100%"} src={"/images/hpageimg1.png"} alt={"sss"} />
-        </Box>
-        <Typography fontWeight={"bolder"}>Setlar</Typography>
-      </Box>
+      )}
     </div>
   );
 
@@ -120,9 +97,7 @@ export default function Categories() {
         open
         sx={{
           "& .MuiDrawer-paper": {
-            background: "#100F0F",
-            color: '#fff',
-            borderRight: 'solid #353535'
+            borderRight: "solid #772C1E",
           },
         }}
       >

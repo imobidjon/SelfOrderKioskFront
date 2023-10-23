@@ -4,13 +4,12 @@ import "./OHScreen.css";
 import Categories from "./Categories";
 import Products from "./Products";
 import DialogSection from "./DialogSection";
-import { Star } from "@mui/icons-material";
 
 export default function OHScreen() {
   const [ open, setOpen ] = useState(false)
 
   return (
-    <Box sx={{ml: '150px'}} className='bgColor'>
+    <Box sx={{ml: '130px'}} className='bgColor'>
       <Grid
         container
         justifyContent="space-between"
@@ -19,11 +18,7 @@ export default function OHScreen() {
         direction="row"
         mt={2}
       >
-        <Grid item>
-          <div className="topTitle">
-            <h1>obi roxat kafe</h1>
-          </div>
-        </Grid>
+
         {/* <Grid item>
           <Autocomplete
             disablePortal
@@ -44,7 +39,6 @@ export default function OHScreen() {
           />
         </Grid> */}
       </Grid>
-      <Star onClick={()=> window.requestFullscreen} />
 
       <Categories />
       <Products setOpen={setOpen} />

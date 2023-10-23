@@ -1,8 +1,8 @@
 .bgColor {
   background:
-    #100F0F;
+    #ffffff;
   height: 100vh;
-  color: #fff;
+  color: #000000;
 }
 
 .title p {
@@ -26,7 +26,7 @@
 }
 .lds-ripple div {
   position: absolute;
-  border: 4px solid #7E3EBE;
+  border: 4px solid #772C1E;
   opacity: 1;
   border-radius: 50%;
   animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;

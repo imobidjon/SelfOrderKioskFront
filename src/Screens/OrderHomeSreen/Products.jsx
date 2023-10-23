@@ -1,15 +1,10 @@
 import {
   Alert,
   Box,
-  CircularProgress,
   Grid,
-  IconButton,
-  Skeleton,
   Typography,
 } from "@mui/material";
 import React, { useContext, useEffect } from "react";
-// import Burger from "../../assets/images/Burger.png";
-import { AddCircle } from "@mui/icons-material";
 import { setProductList, setSelectedProduct } from "../../actions";
 import { Store } from "../../Store";
 
@@ -17,19 +12,18 @@ export default function Products({ setOpen }) {
   const { state, dispatch } = useContext(Store);
   const { products, loading, error } = state.ProductList;
 
-
   useEffect(() => {
     setProductList(dispatch);
   }, [dispatch]);
 
   const ProductClickHandler = (id) => {
-    const selectedProduct = products.find((product) => product._id === id)
-    setSelectedProduct(dispatch, selectedProduct)
-    setOpen(true)
-  }
+    const selectedProduct = products.find((product) => product._id === id);
+    setSelectedProduct(dispatch, selectedProduct);
+    setOpen(true);
+  };
 
   return (
-    <Box sx={{ mt: 10 }}>
+    <Box sx={{ mt: 1 }}>
       <Box>
         <Typography className="ProductsTitle">Barchasi</Typography>
       </Box>
@@ -39,6 +33,7 @@ export default function Products({ setOpen }) {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
+            mt:2
           }}
         >
           <div className="text-center">
@@ -53,54 +48,28 @@ export default function Products({ setOpen }) {
         <Alert severity="error">{error}</Alert>
       ) : (
         <>
-          <Grid container columns={10} spacing={2}>
+          <Grid container columns={12} spacing={2}>
             {products.map((product) => (
-              <Grid item xs={2} key={product.name}>
-                <Box
-                  sx={{
-                    background:
-                      "linear-gradient(118deg, rgba(126, 62, 190, 0.22) 32.67%, rgba(126, 62, 190, 0.19) 85.65%);",
-                    borderRadius: "20px",
-                    mt: 4,
-                    height: "100%",
-                  }}
-                >
-                  <Box sx={{ display: "flex", justifyContent: "center" }}>
-                    <div>
-                      <img
-                        src={product.image}
-                        width={"100%"}
-                        alt="productBurger"
-                      />
-                    </div>
-                  </Box>
-                  <Box
-                    sx={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      alignItems: "center",
-                      p: "20px 10px 0 15px",
-                    }}
-                  >
-                    <Box>
-                      <Typography className="ProductName">
-                        {product.name}
-                      </Typography>
-                      <Typography className="ProductPrice">
-                        <span className="text-dark">Narxi:</span>{" "}
-                        {product.price} so'm
-                      </Typography>
-                    </Box>
-                    <Box>
-                      <IconButton>
-                        <AddCircle
-                          onClick={() => ProductClickHandler(product._id)}
-                          sx={{ color: "#7E3EBE", fontSize: "50px" }}
-                        />
-                      </IconButton>
-                    </Box>
-                  </Box>
-                </Box>
+              <Grid item xs={12} sm={6} md={3} key={product.name}>
+                <div className="card h-100" onClick={() => ProductClickHandler(product._id)} style={{border: '1px solid #772C1E', borderRadius: '20px'}} >
+                  <div className="card-body d-flex justify-content-center align-items-center">
+                    <img
+                      src={product.image}
+                      style={{
+                        maxWidth: "100%",
+                        width: "200px",
+                      }}
+                      alt={product.image}
+                    />
+                  </div>
+                  <div className="card-footer text-center">
+                    <h2 className="ProductName text-center">{product.name}</h2>
+                    <p className="ProductPrice">
+                      <span className="text-dark">Narxi:</span> {product.price}{" "}
+                      so'm
+                    </p>
+                  </div>
+                </div>
               </Grid>
             ))}
           </Grid>

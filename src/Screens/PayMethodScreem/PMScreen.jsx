@@ -43,11 +43,13 @@ export default function PMScreen(props) {
                   maxWidth: "200px",
                   borderRadius: 8,
                   padding: 3,
+                  border: '2px solid #772C1E'
+
                 }}
               >
                 <CardContent>
                   <img src={Money} width={"100%"} alt="Money" />
-                  <p className="fs-2  mt-2 mb-0 pb-0">Naqd pul to’lash</p>
+                  <p className="fs-2  mt-2 mb-0 pb-0" style={{color: '#772C1E'}}>Naqd pul to’lash</p>
                 </CardContent>
               </Card>
             </Grid>
@@ -61,11 +63,13 @@ export default function PMScreen(props) {
                   height: "100%",
                   borderRadius: 8,
                   padding: 3,
+                  border: '2px solid #772C1E'
+
                 }}
               >
                 <CardContent>
                   <img src={CreditCard} width={"100%"} alt="CreditCard" />
-                  <p className="fs-4 mt-3 mb-0 pb-0">Karta orqali to’lash</p>
+                  <p className="fs-4 mt-3 mb-0 pb-0" style={{color: '#772C1E'}}>Karta orqali to’lash</p>
                 </CardContent>
               </Card>
             </Grid>

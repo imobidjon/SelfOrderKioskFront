@@ -43,11 +43,12 @@ export default function ChScreen(props) {
                   maxWidth: "200px",
                   borderRadius: 8,
                   padding: 3,
+                  border: '2px solid #772C1E'
                 }}
               >
                 <CardContent>
                   <img src={Image1} width={"100%"} alt="ChScreen1" />
-                    <p className="fs-2  mt-2 mb-0 pb-0">Ichkarida ovqatlanish</p>
+                    <p className="fs-2  mt-2 mb-0 pb-0" style={{color: '#772C1E'}}>Ichkarida ovqatlanish</p>
                 </CardContent>
               </Card>
             </Grid>
@@ -61,11 +62,12 @@ export default function ChScreen(props) {
                   height: "100%",
                   borderRadius: 8,
                   padding: 3,
+                  border: '2px solid #772C1E'
                 }}
               >
                 <CardContent>
                   <img src={Image2} width={"100%"} alt="ChScreen1" />
-                  <p className="fs-3  mt-3 mb-0 pb-0">O’zi bilan olib ketish</p>
+                  <p className="fs-3  mt-3 mb-0 pb-0" style={{color: '#772C1E'}}>O’zi bilan olib ketish</p>
                 </CardContent>
               </Card>
             </Grid>
