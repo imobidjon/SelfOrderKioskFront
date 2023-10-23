@@ -1,12 +1,11 @@
 import {
   Box,
   Button,
-  ButtonGroup,
   Dialog,
   DialogContent,
   Grid,
   IconButton,
-  Stack,
+  Slide,
   Typography,
 } from "@mui/material";
 import React, { useContext, useState } from "react";
@@ -22,13 +21,36 @@ import {
 import Suzma from "../../assets/images/Suzma.png";
 import Chili from "../../assets/images/Chili.png";
 import Pishloq from "../../assets/images/Pishloq.png";
+import { addToOrder, removeFromOrder } from "../../actions";
+import Swal from "sweetalert2";
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 export default function DialogSection({ setOpen, open }) {
-  const { state } = useContext(Store);
+  const { state, dispatch } = useContext(Store);
   const { SelectedProduct } = state.order;
   const [quantity, setQuantity] = useState(1);
 
-  console.log(SelectedProduct.name);
+  const AddToOrderHandler = () => {
+    addToOrder(dispatch, {...SelectedProduct, quantity})
+    setOpen(false)
+    setQuantity(1)
+    Swal.fire({
+      icon: 'success',
+      title: `Yaxshi tanlov`,
+      text: `Taomingiz savatchaga qo'shildi`,
+      timer: 2000,
+      timerProgressBar: true,
+      confirmButtonText: 'Yaxshi!'
+    })
+  }
+
+  const cancelOrRemoveFromOrder = () => {
+    removeFromOrder(dispatch, SelectedProduct)
+    setOpen(false)
+  }
 
   return (
     <div>
@@ -36,6 +58,7 @@ export default function DialogSection({ setOpen, open }) {
         maxWidth={"sm"}
         fullWidth={true}
         onClose={() => setOpen(false)}
+        TransitionComponent={Transition}
         open={open}
         sx={{
           "& .MuiDialog-paper": {
@@ -46,7 +69,7 @@ export default function DialogSection({ setOpen, open }) {
         <DialogContent
           sx={{
             p: 0,
-            background: "#7E3EBE",
+            background: "#772C1E",
           }}
         >
           <Grid
@@ -59,7 +82,7 @@ export default function DialogSection({ setOpen, open }) {
               item
               xs={5}
               sx={{
-                background: "#7E3EBE",
+                background: "#772C1E",
               }}
             >
               <Box
@@ -71,7 +94,7 @@ export default function DialogSection({ setOpen, open }) {
                 }}
               >
                 <img
-                  width={"100%"}
+                  style={{maxWidth: '100%', width: '200px'}}
                   src={SelectedProduct.image}
                   alt={SelectedProduct.name}
                 />
@@ -81,7 +104,7 @@ export default function DialogSection({ setOpen, open }) {
               item
               xs={7}
               sx={{
-                background: "#E2DBEA",
+                background: "#efefef",
                 borderRadius: "20px 0 0 20px",
               }}
             >
@@ -95,7 +118,7 @@ export default function DialogSection({ setOpen, open }) {
                     sx={{
                       fontFamily: "Poppins",
                       fontWeight: "bold",
-                      color: "#7E3EBE",
+                      color: "#772C1E",
                     }}
                   >
                     {SelectedProduct.name}
@@ -127,14 +150,14 @@ export default function DialogSection({ setOpen, open }) {
                       onClick={() => quantity > 1 && setQuantity(quantity - 1)}
                     >
                       <RemoveCircleOutline
-                        sx={{ color: "#7E3EBE", fontSize: "35px" }}
+                        sx={{ color: "#772C1E", fontSize: "35px" }}
                       />
                     </IconButton>
                     <Typography>{quantity}</Typography>
 
                     <IconButton onClick={() => setQuantity(quantity + 1)}>
                       <AddCircleOutline
-                        sx={{ color: "#7E3EBE", fontSize: "35px" }}
+                        sx={{ color: "#772C1E", fontSize: "35px" }}
                       />
                     </IconButton>
                   </Box>
@@ -173,7 +196,7 @@ export default function DialogSection({ setOpen, open }) {
                       <IconButton>
                         <AddCircle
                           sx={{
-                            color: "#7E3EBE",
+                            color: "#772C1E",
                             fontSize: "30px",
                             position: "absolute",
                             bottom: "-10px",
@@ -199,7 +222,7 @@ export default function DialogSection({ setOpen, open }) {
                       <IconButton>
                         <AddCircle
                           sx={{
-                            color: "#7E3EBE",
+                            color: "#772C1E",
                             fontSize: "30px",
                             position: "absolute",
                             bottom: "35px",
@@ -225,7 +248,7 @@ export default function DialogSection({ setOpen, open }) {
                       <IconButton>
                         <AddCircle
                           sx={{
-                            color: "#7E3EBE",
+                            color: "#772C1E",
                             fontSize: "30px",
                             position: "absolute",
                             bottom: "1px",
@@ -241,16 +264,17 @@ export default function DialogSection({ setOpen, open }) {
 
                 <Box sx={{ display: "flex", alignItems: 'center' }}>
                   <Button
+                    onClick={cancelOrRemoveFromOrder}
                     variant="contained"
                     sx={{
                       background: 'none',
-                      border: '2px #7E3EBE solid',
+                      border: '2px #772C1E solid',
                       borderRadius: "13px",
                       color: '#000',
                       mr: 1,
                       "&:hover": {
-                        backgroundColor: "#9852dd",
-                        borderColor: "#9852dd",
+                        backgroundColor: "#b74c3a",
+                        borderColor: "#b74c3a",
                         boxShadow: "none",
                         color: '#fff',
                       },
@@ -259,14 +283,15 @@ export default function DialogSection({ setOpen, open }) {
                     Ortga
                   </Button>
                   <Button
+                    onClick={AddToOrderHandler}
                     endIcon={<ShoppingBasket />}
                     variant="contained"
                     sx={{
-                      background: "#7E3EBE",
+                      background: "#772C1E",
                       borderRadius: "13px",
                       width: '100%',
                       "&:hover": {
-                        backgroundColor: "#9852dd",
+                        backgroundColor: "#b74c3a",
                         borderColor: "#0062cc",
                         boxShadow: "none",
                       },

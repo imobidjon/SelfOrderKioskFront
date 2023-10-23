@@ -1,25 +1,23 @@
-import React from 'react'
-import './HScreen.css'
-import bgImage1 from '../../assets/images/hpageimg1.png'
-import bgImage2 from '../../assets/images/hpageimg2.png'
-import { NavLink } from 'react-router-dom'
-import DoubleArrowGif from '../../assets/images/double-right-icon.gif'
+import React from "react";
+import "./HScreen.css";
+import { NavLink } from "react-router-dom";
+
 
 export default function Screen() {
   return (
-    <div className='bgColor bgStyle'>
-        <div className='bgImage1'>
-            <img src={bgImage1} alt='bg1' />
+    <div className="bgColor bgStyle">
+      <NavLink to={"/choose"} style={{ textDecoration: 'none' }}>
+        <div className="centerStyle">
+          <img width={"40%"} src={"/images/logo.png"} alt={"sss"} />
         </div>
-        <div className='bgImage2'>
-            <img src={bgImage2} alt='bg2' />
+        <div className="centerStyle">
+        <img width={"80%"} src={"/images/homePageImg.png"} alt={"sss"} />
         </div>
-        <div className='title'>
-            <h1>obi roxat kafe</h1>
-            <NavLink to={'/choose'}>
-              <button >Boshlash  <img src={DoubleArrowGif} alt='double-right-icon' /> </button>
-            </NavLink>
+        <div className="centerStyle text-center">
+          <img width={"30%"} src={"/images/giphy.gif"} alt={"sss"} />
+          <h3>Boshlash uchun bosing</h3>
         </div>
+      </NavLink>
     </div>
-  )
+  );
 }

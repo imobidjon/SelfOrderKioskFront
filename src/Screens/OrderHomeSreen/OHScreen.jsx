@@ -1,4 +1,4 @@
-import { Autocomplete, Box, Grid, TextField } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import React, { useState } from "react";
 import "./OHScreen.css";
 import Categories from "./Categories";
@@ -9,7 +9,7 @@ export default function OHScreen() {
   const [ open, setOpen ] = useState(false)
 
   return (
-    <Box sx={{mx: '100px'}}>
+    <Box sx={{ml: '130px'}} className='bgColor'>
       <Grid
         container
         justifyContent="space-between"
@@ -18,12 +18,8 @@ export default function OHScreen() {
         direction="row"
         mt={2}
       >
-        <Grid item>
-          <div className="topTitle">
-            <h1>obi roxat kafe</h1>
-          </div>
-        </Grid>
-        <Grid item>
+
+        {/* <Grid item>
           <Autocomplete
             disablePortal
             id="combo-box-demo"
@@ -41,7 +37,7 @@ export default function OHScreen() {
              }}
             renderInput={(params) => <TextField {...params} placeholder="Qidiruv" />}
           />
-        </Grid>
+        </Grid> */}
       </Grid>
 
       <Categories />
@@ -51,9 +47,9 @@ export default function OHScreen() {
   );
 }
 
-const top100Films = [
-    { label: 'Non', year: 1994 },
-    { label: 'Shovurma', year: 1972 },
-    { label: 'Lagmon', year: 1974 },
-    { label: 'Burger', year: 2008 },
-]
+// const top100Films = [
+//     { label: 'Non', year: 1994 },
+//     { label: 'Shovurma', year: 1972 },
+//     { label: 'Lagmon', year: 1974 },
+//     { label: 'Burger', year: 2008 },
+// ]

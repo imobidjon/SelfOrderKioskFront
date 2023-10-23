@@ -1,12 +1,21 @@
-import { Alert, Box, CircularProgress, Grid, Typography } from "@mui/material";
+import {
+  Alert,
+  Box,
+  Divider,
+  CircularProgress,
+  Drawer,
+  // Grid,
+  Typography,
+} from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
 import { Store } from "../../Store";
 import { setCategoryList, setProductList } from "../../actions";
 
 export default function Categories() {
   const { state, dispatch } = useContext(Store);
-  const [categoryName, setcategoryName] = useState("");
   const { categories, loading, error } = state.CategoryList;
+  const [categoryName, setcategoryName] = useState("");
+
   useEffect(() => {
     if (!categories) {
       setCategoryList(dispatch);
@@ -20,9 +29,81 @@ export default function Categories() {
     setProductList(dispatch, categoryName);
   };
 
+  const drawer = (
+    <div className="text-center">
+      <Box
+        onClick={() => categoryClickHandler("")}
+        sx={{
+          width: "120px;",
+          height: "120px;",
+        }}
+      >
+        <img width={"100%"} src={"/images/logo.png"} alt={"sss"} />
+      </Box>
+      <Divider sx={{ borderWidth: "2px", borderColor: "#772C1E" }} />
+      {loading ? (
+        <CircularProgress />
+      ) : error ? (
+        <Alert severity="error">{error}</Alert>
+      ) : (
+        <>
+          {categories.map((category) => (
+            <Box
+              key={category.name}
+              onClick={() => categoryClickHandler(category.name)}
+              sx={{
+                width: "70px;",
+                height: "70px;",
+                m: 3,
+              }}
+            >
+              <Box
+                sx={
+                  category.name === categoryName
+                    ? {
+                        background: "#772C1E",
+                        display: "flex",
+                        alignItems: "center",
+                        borderRadius: "15px",
+                        height: "100%",
+                      }
+                    : {
+                        background: "#fff",
+                        display: "flex",
+                        alignItems: "center",
+                        borderRadius: "15px",
+                        height: "100%",
+                      }
+                }
+              >
+                <img
+                  width={"100%"}
+                  src={"/images/11.png"}
+                  alt={category.name}
+                />
+              </Box>
+              <Typography fontWeight={"bolder"}>Burgerlar</Typography>
+            </Box>
+          ))}
+        </>
+      )}
+    </div>
+  );
+
   return (
     <div>
-      <Grid container columns={10} sx={{ mt: 2 }} spacing={3}>
+      <Drawer
+        variant="permanent"
+        open
+        sx={{
+          "& .MuiDrawer-paper": {
+            borderRight: "solid #772C1E",
+          },
+        }}
+      >
+        {drawer}
+      </Drawer>
+      {/* <Grid container columns={10} sx={{ mt: 2 }} spacing={3}>
         {loading ? (
           <CircularProgress />
         ) : error ? (
@@ -66,7 +147,7 @@ export default function Categories() {
             ))}
           </>
         )}
-      </Grid>
+      </Grid> */}
     </div>
   );
 }
