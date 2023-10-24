@@ -4,6 +4,7 @@ import {
   CATEGORY_LIST_REQUEST,
   CATEGORY_LIST_SUCCESS,
   ORDER_ADD_ITEM,
+  ORDER_CLEAR,
   ORDER_SET_TYPE,
   PAY_SET_METHOD,
   PRODUCT_LIST_FAIL,
@@ -121,6 +122,16 @@ function reducer(state, action) {
         },
       };
     }
+    case ORDER_CLEAR:
+      return {
+        ...state,
+        order: {
+          SelectedProduct: {},
+          orderItems: [],
+          totalPrice: 0,
+          itemsCount: 0,
+        },
+      };
     default:
       return state;
   }

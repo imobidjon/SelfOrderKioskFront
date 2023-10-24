@@ -4,6 +4,7 @@ import {
   CATEGORY_LIST_REQUEST,
   CATEGORY_LIST_SUCCESS,
   ORDER_ADD_ITEM,
+  ORDER_CLEAR,
   ORDER_SET_TYPE,
   PAY_SET_METHOD,
   PRODUCT_LIST_FAIL,
@@ -31,7 +32,7 @@ export const setCategoryList = async (dispatch) => {
   dispatch({ type: CATEGORY_LIST_REQUEST });
   try {
     const { data } = await axios.get(
-      "http://192.168.43.241:5000/api/categories"
+      "http://192.168.0.108:5000/api/categories"
     );
     return dispatch({
       type: CATEGORY_LIST_SUCCESS,
@@ -48,7 +49,7 @@ export const setCategoryList = async (dispatch) => {
 export const setProductList = async (dispatch, categoryName = "") => {
   dispatch({ type: PRODUCT_LIST_REQUEST });
   try {
-    const { data } = await axios.get(`http://192.168.43.241:5000/api/products?category=${categoryName}`);
+    const { data } = await axios.get(`http://192.168.0.108:5000/api/products?category=${categoryName}`);
     return dispatch({
       type: PRODUCT_LIST_SUCCESS,
       payload: data,
@@ -68,16 +69,22 @@ export const setSelectedProduct = async (dispatch, selectedProduct) => {
   });
 };
 
-export const addToOrder = async (dispatch, item) => {
+export const addToOrder = async (dispatch, item, qoshimchalar) => {
   return dispatch({
     type: ORDER_ADD_ITEM,
-    payload: item,
+    payload: item, qoshimchalar,
   });
 };
 
-export const removeFromOrder = async (dispatch, item) => {
+export const removeFromOrder = async (dispatch, item, qoshimchalar) => {
   return dispatch({
     type: REMOVE_FROM_ORDER,
-    payload: item,
+    payload:  item, qoshimchalar,
+  });
+};
+
+export const clearOrder = async (dispatch) => {
+  return dispatch({
+    type: ORDER_CLEAR,
   });
 };

@@ -4,6 +4,7 @@ import ChScreen from './Screens/ChooseScreen/ChScreen';
 import Screen from './Screens/HomeScreen/Screen';
 import PMScreen from './Screens/PayMethodScreem/PMScreen';
 import OHScreen from './Screens/OrderHomeSreen/OHScreen';
+import RScreen from './Screens/ReviewScreen/RScreen';
 
 function App() {
   return (
@@ -13,7 +14,10 @@ function App() {
           <Route Component={Screen} path='/' exact={'true'} />      
           <Route Component={ChScreen} path='/choose' exact={'true'} />      
           <Route Component={PMScreen} path='/paymethod' exact={'true'} />      
-          <Route Component={OHScreen} path='/order-home' exact={'true'} />      
+          <Route Component={OHScreen} path='/order' exact={'true'} />      
+          <Route Component={OHScreen} path='/order' exact={'true'} />      
+          <Route Component={OHScreen} path='/order' exact={'true'} /> 
+          <Route Component={RScreen} path="/review"  exact={'true'} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -14,7 +14,7 @@ export default function PMScreen(props) {
 
   const handlerChoose = (payMethod) => {
     setPayMethod(dispatch, payMethod);
-    navigate("/order-home");
+    navigate("/order");
   };
 
   AOS.init();
@@ -36,7 +36,7 @@ export default function PMScreen(props) {
           <Grid container spacing={5}>
             <Grid item xs={6}>
               <Card
-                onClick={() => handlerChoose("Cash")}
+                onClick={() => handlerChoose("Naqd pul")}
                 data-aos="fade-right"
                 sx={{
                   textAlign: "center",
@@ -55,7 +55,7 @@ export default function PMScreen(props) {
             </Grid>
             <Grid item xs={6}>
               <Card
-                onClick={() => handlerChoose("Card")}
+                onClick={() => handlerChoose("Karta")}
                 data-aos="fade-left"
                 sx={{
                   textAlign: "center",

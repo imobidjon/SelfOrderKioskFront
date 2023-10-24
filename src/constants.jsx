@@ -15,3 +15,4 @@ export const SELECTED_PRODUCT = 'SELECTED_PRODUCT'
 //add, remove order
 export const ORDER_ADD_ITEM = 'ORDER_ADD_ITEM'
 export const REMOVE_FROM_ORDER = 'REMOVE_FROM_ORDER'
+export const ORDER_CLEAR = 'ORDER_CLEAR';

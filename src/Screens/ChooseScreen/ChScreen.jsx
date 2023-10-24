@@ -36,7 +36,7 @@ export default function ChScreen(props) {
           <Grid container spacing={5}>
             <Grid item xs={6}>
               <Card
-                onClick={() => handlerChoose("Eat In")}
+                onClick={() => handlerChoose("Ichkarida ovqatlanish")}
                 data-aos="fade-right"
                 sx={{
                   textAlign: "center",
@@ -54,7 +54,7 @@ export default function ChScreen(props) {
             </Grid>
             <Grid item xs={6}>
               <Card
-                onClick={() => handlerChoose("Take Out")}
+                onClick={() => handlerChoose("Olib ketish")}
                 data-aos="fade-left"
                 sx={{
                   textAlign: "center",

@@ -26,7 +26,7 @@ export default function Categories() {
 
   const categoryClickHandler = (name) => {
     setcategoryName(name);
-    setProductList(dispatch, categoryName);
+    setProductList(dispatch, name);
   };
 
   const drawer = (
