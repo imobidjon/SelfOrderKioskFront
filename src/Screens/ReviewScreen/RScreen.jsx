@@ -1,10 +1,8 @@
 import {
-  AddCircle,
   AddCircleOutline,
   ArrowBack,
   AssignmentTurnedIn,
   EditNote,
-  RemoveCircle,
   RemoveCircleOutline,
 } from "@mui/icons-material";
 import {
@@ -24,6 +22,7 @@ import {
 import React, { useContext, useState } from "react";
 import { Store } from "../../Store";
 import { addToOrder, removeFromOrder } from "../../actions";
+import { useNavigate } from "react-router-dom";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -32,9 +31,11 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 export default function RScreen() {
   const [open, setOpen] = useState(false);
   const { state, dispatch } = useContext(Store);
-  const { orderItems, itemsCount, totalPrice, orderType, payMethod } = state.order;
+  const { orderItems, itemsCount, totalPrice, orderType, payMethod } =
+    state.order;
   const [product, setProduct] = useState({});
   const [quantity, setQuantity] = useState();
+  const navigate = useNavigate();
 
   const addToOrderHandler = () => {
     addToOrder(dispatch, { ...product, quantity });
@@ -150,7 +151,7 @@ export default function RScreen() {
                     </IconButton>
                     <Typography>{quantity}</Typography>
 
-                    <IconButton onClick={() => setQuantity(quantity +1)}>
+                    <IconButton onClick={() => setQuantity(quantity + 1)}>
                       <AddCircleOutline
                         sx={{ color: "#772C1E", fontSize: "35px" }}
                       />
@@ -412,8 +413,8 @@ export default function RScreen() {
               <Box>
                 <Button
                   onClick={() => {
-                      setProduct(item);
-                      setQuantity(item.quantity)
+                    setProduct(item);
+                    setQuantity(item.quantity);
                     setOpen(true);
                   }}
                   variant="contained"
@@ -495,6 +496,7 @@ export default function RScreen() {
           }}
         >
           <Button
+            onClick={() => navigate(`/order`)}
             startIcon={<ArrowBack />}
             variant="contained"
             sx={{
@@ -515,6 +517,7 @@ export default function RScreen() {
             Ortga
           </Button>
           <Button
+            onClick={() => navigate(`/complete`)}
             endIcon={<AssignmentTurnedIn />}
             variant="contained"
             sx={{

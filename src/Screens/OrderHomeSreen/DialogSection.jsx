@@ -31,11 +31,11 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 export default function DialogSection({ setOpen, open }) {
   const { state, dispatch } = useContext(Store);
-  const { SelectedProduct } = state.order;
+  const { selected } = state.SelectedProduct;
   const [quantity, setQuantity] = useState(1);
   const [qoshimchalar, setQoshimchalar] = useState({});
   const AddToOrderHandler = () => {
-    addToOrder(dispatch, { ...SelectedProduct, quantity, qoshimchalar });
+    addToOrder(dispatch, { ...selected, quantity, qoshimchalar });
     setOpen(false);
     setQuantity(1);
     Swal.fire({
@@ -49,7 +49,7 @@ export default function DialogSection({ setOpen, open }) {
   };
 
   const cancelOrRemoveFromOrder = () => {
-    removeFromOrder(dispatch, SelectedProduct);
+    removeFromOrder(dispatch, selected);
     setOpen(false);
   };
   return (
@@ -95,8 +95,8 @@ export default function DialogSection({ setOpen, open }) {
             >
               <img
                 style={{ maxWidth: "100%", width: "200px" }}
-                src={SelectedProduct.image}
-                alt={SelectedProduct.name}
+                src={selected.image}
+                alt={selected.name}
               />
             </Box>
           </Grid>
@@ -121,7 +121,7 @@ export default function DialogSection({ setOpen, open }) {
                     color: "#772C1E",
                   }}
                 >
-                  {SelectedProduct.name}
+                  {selected.name}
                 </Typography>
               </Box>
 
@@ -136,7 +136,7 @@ export default function DialogSection({ setOpen, open }) {
               >
                 <Box>
                   <Typography sx={{ fontFamily: "Poppins" }}>
-                    <b>{SelectedProduct.price}</b> so'm
+                    <b>{selected.price}</b> so'm
                   </Typography>
                 </Box>
                 <Box

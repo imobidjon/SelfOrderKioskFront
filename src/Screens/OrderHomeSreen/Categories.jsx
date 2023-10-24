@@ -78,11 +78,11 @@ export default function Categories() {
               >
                 <img
                   width={"100%"}
-                  src={"/images/11.png"}
+                  src={category.image}
                   alt={category.name}
                 />
               </Box>
-              <Typography fontWeight={"bolder"}>Burgerlar</Typography>
+              <Typography fontWeight={"bolder"}>{category.name}</Typography>
             </Box>
           ))}
         </>
