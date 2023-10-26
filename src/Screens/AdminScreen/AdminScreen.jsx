@@ -23,7 +23,7 @@ export default function AdminScreen() {
 
   const setOrderStateHandler = async (order, action) => {
     try {
-      await axios.put("http://192.168.43.241:5000/api/orders/" + order._id, {
+      await axios.put("http://192.168.0.100:5000/api/orders/" + order._id, {
         action: action,
       });
       listOrders(dispatch);
@@ -66,7 +66,7 @@ export default function AdminScreen() {
             </TableHead>
             <TableBody>
               {orders.map((order) => (
-                <TableRow key={order.name}>
+                <TableRow key={order._id}>
                   <TableCell component="th">
                     {order.number}
                   </TableCell>
@@ -74,7 +74,7 @@ export default function AdminScreen() {
                   <TableCell align="right">{order.orderItems.length}</TableCell>
                   <TableCell align="right">
                     {order.orderItems.map((item) => (
-                      <Box key={item.name}>
+                      <Box key={item._id}>
                         {item.name} x {item.quantity}
                       </Box>
                     ))}

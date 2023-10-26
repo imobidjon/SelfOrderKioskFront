@@ -27,7 +27,7 @@ function App() {
           <Route Component={AdminScreen} path="/admin"  exact={'true'} />
 
           {/* Queue Screen */}
-          <Route Component={QueueScreen} path="/admin"  exact={'true'} />
+          <Route Component={QueueScreen} path="/queue"  exact={'true'} />
         </Routes>
       </BrowserRouter>
     </div>
