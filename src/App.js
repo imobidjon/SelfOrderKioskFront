@@ -7,6 +7,7 @@ import OHScreen from './Screens/OrderHomeSreen/OHScreen';
 import RScreen from './Screens/ReviewScreen/RScreen';
 import CScreen from './Screens/CompleteScreen/CScreen';
 import AdminScreen from './Screens/AdminScreen/AdminScreen';
+import QueueScreen from './Screens/QueueScreen/QueueScreen';
 
 function App() {
   return (
@@ -24,6 +25,9 @@ function App() {
 
           {/* Admin Screen */}
           <Route Component={AdminScreen} path="/admin"  exact={'true'} />
+
+          {/* Queue Screen */}
+          <Route Component={QueueScreen} path="/admin"  exact={'true'} />
         </Routes>
       </BrowserRouter>
     </div>

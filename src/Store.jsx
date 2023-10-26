@@ -11,6 +11,9 @@ import {
   ORDER_LIST_FAIL,
   ORDER_LIST_REQUEST,
   ORDER_LIST_SUCCESS,
+  ORDER_QUEUE_LIST_FAIL,
+  ORDER_QUEUE_LIST_REQUEST,
+  ORDER_QUEUE_LIST_SUCCESS,
   ORDER_SET_TYPE,
   PAY_SET_METHOD,
   PRODUCT_LIST_FAIL,
@@ -26,6 +29,7 @@ const initialState = {
   ProductList: { loading: true },
   CategoryList: { loading: true },
   SelectedProduct: { selected: {} },
+  queueList: { loading: true },
   orderList: { loading: true },
   order: {
     orderType: "Eat In",
@@ -165,6 +169,19 @@ function reducer(state, action) {
       return {
         ...state,
         orderList: { loading: false, error: action.payload },
+      };
+
+    case ORDER_QUEUE_LIST_REQUEST:
+      return { ...state, queueList: { loading: true } };
+    case ORDER_QUEUE_LIST_SUCCESS:
+      return {
+        ...state,
+        queueList: { loading: false, queue: action.payload },
+      };
+    case ORDER_QUEUE_LIST_FAIL:
+      return {
+        ...state,
+        queueList: { loading: false, error: action.payload },
       };
     default:
       return state;
