@@ -23,7 +23,7 @@ export default function PMScreen(props) {
     <div className="bgColor">
       <div className="title pt-3">
         <div className="centerStyle">
-          <img width={"60%"} src={"/images/logo.png"} alt={"sss"} />
+          <img width={"60%"}  style={{maxWidth: '200px'}} src={"/images/logo.png"} alt={"sss"} />
         </div>
         <p className="mb-5" data-aos="zoom-out-up">
           Qaysi usulda to'lov qilasiz?
@@ -41,15 +41,18 @@ export default function PMScreen(props) {
                 sx={{
                   textAlign: "center",
                   maxWidth: "200px",
+                  minWidth: '60px',
+                  height: "100%",
+
                   borderRadius: 8,
-                  padding: 3,
+                  padding: {xs: 0, sm: 3},
                   border: '2px solid #772C1E'
 
                 }}
               >
                 <CardContent>
-                  <img src={Money} width={"100%"} alt="Money" />
-                  <p className="fs-2  mt-2 mb-0 pb-0" style={{color: '#772C1E'}}>Naqd pul to’lash</p>
+                  <img src={Money} style={{minWidth: '30px', maxWidth: '120px'}} width={"100%"} alt="Money" />
+                  <p style={{color: '#772C1E'}}>Naqd pul to’lash</p>
                 </CardContent>
               </Card>
             </Grid>
@@ -60,16 +63,17 @@ export default function PMScreen(props) {
                 sx={{
                   textAlign: "center",
                   maxWidth: "200px",
+                  minWidth: '60px',
                   height: "100%",
                   borderRadius: 8,
-                  padding: 3,
+                  padding: {xs: 0, sm: 3},
                   border: '2px solid #772C1E'
 
                 }}
               >
                 <CardContent>
-                  <img src={CreditCard} width={"100%"} alt="CreditCard" />
-                  <p className="fs-4 mt-3 mb-0 pb-0" style={{color: '#772C1E'}}>Karta orqali to’lash</p>
+                  <img src={CreditCard} style={{minWidth: '30px', maxWidth: '120px'}} width={"100%"} alt="CreditCard" />
+                  <p style={{color: '#772C1E'}}>Karta orqali to’lash</p>
                 </CardContent>
               </Card>
             </Grid>

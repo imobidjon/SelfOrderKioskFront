@@ -41,7 +41,7 @@ export const setCategoryList = async (dispatch) => {
   dispatch({ type: CATEGORY_LIST_REQUEST });
   try {
     const { data } = await axios.get(
-      "http://192.168.0.100:5000/api/categories"
+      "https://self-order-kiosk-back.vercel.app/api/categories"
     );
     return dispatch({
       type: CATEGORY_LIST_SUCCESS,
@@ -58,7 +58,7 @@ export const setCategoryList = async (dispatch) => {
 export const setProductList = async (dispatch, categoryName = "") => {
   dispatch({ type: PRODUCT_LIST_REQUEST });
   try {
-    const { data } = await axios.get(`http://192.168.0.100:5000/api/products?category=${categoryName}`);
+    const { data } = await axios.get(`https://self-order-kiosk-back.vercel.app/api/products?category=${categoryName}`);
     return dispatch({
       type: PRODUCT_LIST_SUCCESS,
       payload: data,
@@ -111,7 +111,7 @@ export const createOrder = async (dispatch, order) => {
   }
   dispatch({ type: ORDER_CREATE_REQUEST });
   try {
-    const { data } = await axios.post('http://192.168.0.100:5000/api/orders', PostOrder);
+    const { data } = await axios.post('https://self-order-kiosk-back.vercel.app/api/orders', PostOrder);
     dispatch({
       type: ORDER_CREATE_SUCCESS,
       payload: data,
@@ -130,7 +130,7 @@ export const createOrder = async (dispatch, order) => {
 export const listOrders = async (dispatch) => {
   dispatch({ type: ORDER_LIST_REQUEST });
   try {
-    const { data } = await axios.get(`http://192.168.0.100:5000/api/orders`);
+    const { data } = await axios.get(`https://self-order-kiosk-back.vercel.app/api/orders`);
     return dispatch({
       type: ORDER_LIST_SUCCESS,
       payload: data,
@@ -147,7 +147,7 @@ export const listOrders = async (dispatch) => {
 export const listQueue = async (dispatch) => {
   dispatch({ type: ORDER_QUEUE_LIST_REQUEST });
   try {
-    const { data } = await axios.get(`http://192.168.0.100:5000/api/orders/queue`);
+    const { data } = await axios.get(`https://self-order-kiosk-back.vercel.app/api/orders/queue`);
     return dispatch({
       type: ORDER_QUEUE_LIST_SUCCESS,
       payload: data,

@@ -23,7 +23,7 @@ export default function ChScreen(props) {
     <div className="bgColor">
       <div className="title pt-3">
         <div className="centerStyle">
-          <img width={"60%"} src={"/images/logo.png"} alt={"sss"} />
+          <img width={"60%"} style={{maxWidth: '200px'}} src={"/images/logo.png"} alt={"sss"} />
         </div>
         <p className="mb-5" data-aos="zoom-out-up">
           Bugun qayerda ovqatlanasiz?
@@ -41,14 +41,15 @@ export default function ChScreen(props) {
                 sx={{
                   textAlign: "center",
                   maxWidth: "200px",
+                  minWidth: '60px',
                   borderRadius: 8,
-                  padding: 3,
+                  padding: {xs: 0, sm: 3},
                   border: '2px solid #772C1E'
                 }}
               >
                 <CardContent>
-                  <img src={Image1} width={"100%"} alt="ChScreen1" />
-                    <p className="fs-2  mt-2 mb-0 pb-0" style={{color: '#772C1E'}}>Ichkarida ovqatlanish</p>
+                  <img src={Image1} width={"100%"} style={{minWidth: '30px', maxWidth: '120px'}} alt="ChScreen1" />
+                    <p style={{color: '#772C1E', marginTop: '5px'}}>Ichkarida ovqatlanish</p>
                 </CardContent>
               </Card>
             </Grid>
@@ -59,15 +60,16 @@ export default function ChScreen(props) {
                 sx={{
                   textAlign: "center",
                   maxWidth: "200px",
+                  minWidth: '60px',
                   height: "100%",
                   borderRadius: 8,
-                  padding: 3,
+                  padding: {xs: 0, sm: 3},
                   border: '2px solid #772C1E'
                 }}
               >
                 <CardContent>
-                  <img src={Image2} width={"100%"} alt="ChScreen1" />
-                  <p className="fs-3  mt-3 mb-0 pb-0" style={{color: '#772C1E'}}>O’zi bilan olib ketish</p>
+                  <img src={Image2} width={"100%"} style={{minWidth: '30px', maxWidth: '120px'}} alt="ChScreen1" />
+                  <p style={{color: '#772C1E', marginTop: '5px'}}>O’zi bilan olib ketish</p>
                 </CardContent>
               </Card>
             </Grid>

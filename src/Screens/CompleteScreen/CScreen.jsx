@@ -1,7 +1,13 @@
 import React, { useContext, useEffect } from "react";
 import { Store } from "../../Store";
 import { createOrder } from "../../actions";
-import { Alert, Box, Button, CircularProgress, Typography } from "@mui/material";
+import {
+  Alert,
+  Box,
+  Button,
+  CircularProgress,
+  Typography,
+} from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { ArrowBack } from "@mui/icons-material";
 
@@ -21,13 +27,32 @@ export default function CScreen() {
     <div>
       <div className="title pt-3">
         <div className="centerStyle">
-          <img width={"30%"} src={"/images/logo.png"} alt={"sss"} />
+          <img
+            width={"30%"}
+            style={{ maxWidth: "200px" }}
+            src={"/images/logo.png"}
+            alt={"sss"}
+          />
         </div>
         <p className="mb-2 mx-3">Biz sizning buyurtmangizni tayyorlamoqdamiz</p>
       </div>
       <Box>
         {loading ? (
-          <CircularProgress></CircularProgress>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              mt: 2,
+            }}
+          >
+            <div className="text-center">
+              <div className="lds-ripple">
+                <div></div>
+                <div></div>
+              </div>
+            </div>
+          </Box>
         ) : error ? (
           <Alert severity="error">{error}</Alert>
         ) : (
@@ -40,34 +65,36 @@ export default function CScreen() {
             >
               Iltimos biroz kuting!
             </Typography>
-            <Box sx={{ textAlign: "center", position: "relative" }}>
+            <Box sx={{ textAlign: "center",position: "relative" }}>
               <img
                 src={"/images/receiptPaper.png"}
                 alt="receiptPaper"
+                style={{ maxWidth: "300px",  }}
                 width={"50%"}
               />
               <Box
                 sx={{
                   position: "absolute",
-                  top: 70,
-                  left: 205,
+                  position: 'absolute',
+                  top: '50%',
+                  left: '50%',
+                  transform: 'translate(-50%, -50%)',
                 }}
               >
                 <Typography
-                  sx={{ textAlign: "center", textTransform: "uppercase" }}
+                  sx={{ textAlign: "center", textTransform: "uppercase", fontSize: {xs: '8px', md: '12px'} }}
                   gutterBottom
                   component="p"
-                  style={{ fontSize: "12px" }}
                 >
                   Sizning buyurtma raqamingiz:
                 </Typography>
-                <h1 style={{ fontSize: "200px", fontWeight: "bolder" }}>
+                <Typography  component="p" sx={{ fontSize: {xs: '100px', md: '200px'}, fontWeight: "bolder" }}>
                   {newOrder.number}
-                </h1>
+                </Typography>
               </Box>
             </Box>
 
-            <Box sx={{mx:15, mt:5}}>
+            <Box sx={{ mx: {xs: 3, md: 15}, mt: 5, textAlign: "center" }}>
               <Button
                 onClick={() => navigate(`/`)}
                 startIcon={<ArrowBack />}
@@ -75,7 +102,7 @@ export default function CScreen() {
                 sx={{
                   background: "#772C1E",
                   borderRadius: "13px",
-                  width: "100%",
+                  width: "60%",
                   "&:hover": {
                     backgroundColor: "#b74c3a",
                     borderColor: "#0062cc",

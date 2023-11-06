@@ -23,7 +23,7 @@ export default function AdminScreen() {
 
   const setOrderStateHandler = async (order, action) => {
     try {
-      await axios.put("http://192.168.0.100:5000/api/orders/" + order._id, {
+      await axios.put("https://self-order-kiosk-back.vercel.app/api/orders/" + order._id, {
         action: action,
       });
       listOrders(dispatch);
