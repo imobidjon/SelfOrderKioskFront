@@ -25,19 +25,21 @@ import { useNavigate } from "react-router-dom";
 export default function OHScreen() {
   const [open, setOpen] = useState(false);
   const { state, dispatch } = useContext(Store);
+  const [categoryName, setcategoryName] = useState("");
   const { orderItems, itemsCount, totalPrice } = state.order;
   const navigate = useNavigate();
-
-
 
   const cancelOrRemoveFromOrder = (SelectedProduct) => {
     removeFromOrder(dispatch, SelectedProduct);
   };
 
   return (
-    <Box sx={{ ml: "130px" }} className="bgColor">
-      <Categories />
-      <Products setOpen={setOpen} />
+    <Box sx={{ ml: "140px" }} className="bgColor">
+      <Categories
+        categoryName={categoryName}
+        setcategoryName={setcategoryName}
+      />
+      <Products categoryName={categoryName} setOpen={setOpen} />
       <DialogSection open={open} setOpen={setOpen} />
 
       {itemsCount ? (
@@ -144,7 +146,7 @@ export default function OHScreen() {
                       paddingBottom: 2,
                     },
                   }}
-                > 
+                >
                   {/* {
                     item.qoshimchalar.pishloq || item.qoshimchalar.chili || item.qoshimchalar.suzma ? 
                     <Box sx={{ position: "absolute", top: -10, background: '#772C1E', width: '100px', height: '30px', borderRadius: '20px' }}>
@@ -204,7 +206,7 @@ export default function OHScreen() {
             <Button
               onClick={() => {
                 clearOrder(dispatch);
-                navigate('/');
+                navigate("/");
               }}
               startIcon={<ArrowBack />}
               variant="contained"

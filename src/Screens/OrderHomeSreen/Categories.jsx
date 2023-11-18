@@ -11,10 +11,10 @@ import React, { useContext, useEffect, useState } from "react";
 import { Store } from "../../Store";
 import { setCategoryList, setProductList } from "../../actions";
 
-export default function Categories() {
+export default function Categories({categoryName,
+  setcategoryName}) {
   const { state, dispatch } = useContext(Store);
   const { categories, loading, error } = state.CategoryList;
-  const [categoryName, setcategoryName] = useState("");
 
   useEffect(() => {
     if (!categories) {
@@ -55,6 +55,7 @@ export default function Categories() {
                 width: "70px;",
                 height: "70px;",
                 m: 3,
+                my: 4
               }}
             >
               <Box
@@ -82,8 +83,10 @@ export default function Categories() {
                   alt={category.name}
                 />
               </Box>
-              <Typography fontWeight={"bolder"}>{category.name}</Typography>
+              <Typography fontWeight={"bolder"} >{category.name}</Typography>
+              <Divider sx={{ borderWidth: "1.4px", borderColor: "#772C1E"}} />
             </Box>
+
           ))}
         </>
       )}

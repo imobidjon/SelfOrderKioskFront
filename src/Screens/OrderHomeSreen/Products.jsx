@@ -8,7 +8,7 @@ import React, { useContext, useEffect } from "react";
 import { setProductList, setSelectedProduct } from "../../actions";
 import { Store } from "../../Store";
 
-export default function Products({ setOpen }) {
+export default function Products({ setOpen, categoryName }) {
   const { state, dispatch } = useContext(Store);
   const { products, loading, error } = state.ProductList;
 
@@ -25,7 +25,7 @@ export default function Products({ setOpen }) {
   return (
     <Box sx={{ mt: 1 }}>
       <Box>
-        <Typography className="ProductsTitle">Barchasi</Typography>
+        <Typography className="ProductsTitle">{categoryName === "" ? "Barchasi" : categoryName}</Typography>
       </Box>
       {loading ? (
         <Box
