@@ -12,7 +12,7 @@ import { Store } from "../../Store";
 import { setCategoryList, setProductList } from "../../actions";
 
 export default function Categories({categoryName,
-  setcategoryName}) {
+  setcategoryName, itemsCount}) {
   const { state, dispatch } = useContext(Store);
   const { categories, loading, error } = state.CategoryList;
 
@@ -30,7 +30,7 @@ export default function Categories({categoryName,
   };
 
   const drawer = (
-    <div className="text-center">
+    <Box sx={itemsCount? {pb:25} : ''} className="text-center">
       <Box
         onClick={() => categoryClickHandler("")}
         sx={{
@@ -90,11 +90,11 @@ export default function Categories({categoryName,
           ))}
         </>
       )}
-    </div>
+    </Box>
   );
 
   return (
-    <div>
+    <Box>
       <Drawer
         variant="permanent"
         open
@@ -151,6 +151,6 @@ export default function Categories({categoryName,
           </>
         )}
       </Grid> */}
-    </div>
+    </Box>
   );
 }

@@ -8,7 +8,7 @@ import React, { useContext, useEffect } from "react";
 import { setProductList, setSelectedProduct } from "../../actions";
 import { Store } from "../../Store";
 
-export default function Products({ setOpen, categoryName }) {
+export default function Products({ setOpen, categoryName, itemsCount }) {
   const { state, dispatch } = useContext(Store);
   const { products, loading, error } = state.ProductList;
 
@@ -23,7 +23,7 @@ export default function Products({ setOpen, categoryName }) {
   };
 
   return (
-    <Box sx={{ mt: 1 }}>
+    <Box sx={itemsCount? {pb:27, mt: 1} : {pb:2, mt: 1 }}>
       <Box>
         <Typography className="ProductsTitle">{categoryName === "" ? "Barchasi" : categoryName}</Typography>
       </Box>

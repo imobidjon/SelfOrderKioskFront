@@ -36,16 +36,18 @@ export default function OHScreen() {
   return (
     <Box sx={{ ml: "140px" }} className="bgColor">
       <Categories
+      itemsCount={itemsCount}
         categoryName={categoryName}
         setcategoryName={setcategoryName}
       />
-      <Products categoryName={categoryName} setOpen={setOpen} />
+      <Products
+      itemsCount={itemsCount} categoryName={categoryName} setOpen={setOpen} />
       <DialogSection open={open} setOpen={setOpen} />
 
       {itemsCount ? (
         <Box
           sx={{
-            position: "absolute",
+            position: "fixed",
             bottom: 0,
             left: 0,
             right: 0,
